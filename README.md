@@ -50,6 +50,9 @@ cat > ovirt-enginesetup.yml << EOF
   vars:
     ovirt_host_domain: CHANGEME_TO_YOUR_DOMAIN
     ovirt_host_fqdn: CHANGEME_TO_YOUR_SERVER_FQDN
+  vars_prompt:
+  - name: "ovirt_engine_admin_password"
+    prompt: "Please enter a password for admin@internal (ovirt engine admin)"
   remote_user: root
   roles:
   - centos7-ovirt-enginesetup
