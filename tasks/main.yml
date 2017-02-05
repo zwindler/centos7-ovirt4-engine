@@ -43,13 +43,13 @@
     size: 50G
 - name: mkfs lv_iso_domain
   filesystem:
-    fstype: ext4
+    fstype: xfs
     dev: '/dev/{{ vg_name }}/lv_iso_domain'
 - name: mount new FS
   mount: 
     name: /var/lib/exports/iso
     src: '/dev/{{ vg_name }}/lv_iso_domain'
-    fstype: ext4
+    fstype: xfs
     state: mounted
 - name: Change share owner
   file: 
