@@ -37,8 +37,6 @@ cd /etc/ansible
 cat > ovirt-allinone.yml << EOF
 ---
 - hosts: localhost
-  vars:
-    vg_name: vg_data
   remote_user: root
   roles:
   - centos7-ovirt-allinone
@@ -68,5 +66,5 @@ ansible-playbook ovirt-allinone.yml
 
 If you want to launch ovirt engine setup with the default configuration. You can review/change the variables given by opening the generated answer file located at /tmp/engine-setup-answers
 ```
-ansible-playbook ovirt-engine-setup.yml
+ansible-playbook ovirt-enginesetup.yml
 ```
