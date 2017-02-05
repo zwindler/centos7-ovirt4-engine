@@ -1,4 +1,4 @@
-# centos7-ovirt-enginesetup
+# centos7-ovirt-allinone
 Playbooks to help build a ovirt allinone node on CentOS 7
 
 # Prerequisites
@@ -54,3 +54,5 @@ If you want to launch ovirt engine setup with the default configuration. You can
 ```
 ansible-playbook ovirt-enginesetup.yml
 ```
+
+From there, you should be able to connect to the ovirt web console to https://[FQDN_OF_YOUR_HOST]
