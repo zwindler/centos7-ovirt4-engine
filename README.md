@@ -27,6 +27,7 @@ yum install -y ansible git
 cd /etc/ansible/roles
 git clone https://github.com/zwindler/centos7-ovirt-allinone
 git clone https://github.com/zwindler/centos7-ovirt-enginesetup
+git clone https://github.com/zwindler/centos7-ovirt-postenginesetup
 ```
 
 Side note: answer file for has been generated with command "engine-setup --generate-answer=/tmp/engine-setup-answers.j2"
