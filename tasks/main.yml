@@ -7,21 +7,6 @@
   yum:
     name: '*'
     state: latest
-- name: install prerequisites
-  yum: state=present name={{ item }}
-  with_items:
-  - firewalld
-  - nfs-utils
-- name: 'start firewalld'
-  systemd:
-    state: started
-    enabled: yes
-    name: firewalld
-- name: 'start nfs server'
-  systemd:
-    state: started
-    enabled: yes
-    name: nfs-server
 - name: switch to Permissive until I figure out what goes wrong when Enforcing
   selinux:
     policy: targeted
@@ -29,21 +14,20 @@
 - name: comment the last 3 lines with Ciphers, MACs and KexAlgorithms temporarily because ovirt install will fail
   lineinfile: 
     dest: /etc/ssh/sshd_config
-    backup: yes
-    regexp: 'Ciphers'
-    line: '#Ciphers'
+    regexp: 'Ciphers(.*)$'
+    line: '#Ciphers\1'
   notify: 'restart sshd'
 - name: comment the last 3 lines with Ciphers, MACs and KexAlgorithms temporarily because ovirt install will fail
   lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: 'MACs'
-    line: '#MACs'
+    regexp: 'MACs(.*)$'
+    line: '#MACs\1'
   notify: 'restart sshd'
 - name: comment the last 3 lines with Ciphers, MACs and KexAlgorithms temporarily because ovirt install will fail
   lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: 'KexAlgorithms'
-    line: '#KexAlgorithms'
+    regexp: 'KexAlgorithms(.*)$'
+    line: '#KexAlgorithms\1'
   notify: 'restart sshd'
 - name: Install ovirt-engine-setup-plugin-allinone
   yum: name=ovirt-engine-setup-plugin-allinone
