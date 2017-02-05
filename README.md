@@ -1,4 +1,4 @@
-# centos7-ovirt-enginesetup
+# centos7-ovirt-allinone
 Playbooks to help build a ovirt allinone node on CentOS 7
 
 # Prerequisites
