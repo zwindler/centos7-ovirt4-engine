@@ -22,25 +22,6 @@
     state: started
     enabled: yes
     name: nfs-server
-- name: prepare nfs share (first datastore)
-  lineinfile: 
-    create: yes
-    dest: /etc/exports 
-    line: '/share/storage  127.0.0.1/32(rw,anonuid=36,anongid=36,all_squash)'
-  notify: 'restart nfs server'
-- name: Create share mountpoint
-  file: 
-    path=/share/storage
-    state=directory
-- name: create lv for share storage
-  lvol:
-    vg: '{{ vg_name }}'
-    lv: lv_share_storage
-    size: 100G
-- name: mkfs share storage
-  filesystem:
-    fstype: ext4
-    dev: '/dev/{{ vg_name }}/lv_share_storage'
 - name: switch to Permissive until I figure out what goes wrong when Enforcing
   selinux:
     policy: targeted
@@ -64,10 +45,5 @@
     regexp: 'KexAlgorithms'
     line: '#KexAlgorithms'
   notify: 'restart sshd'
-- name: Change share owner
-  file: 
-    path: '/share/storage'
-    owner: 36
-    group: 36
 - name: Install ovirt-engine-setup-plugin-allinone
   yum: name=ovirt-engine-setup-plugin-allinone
