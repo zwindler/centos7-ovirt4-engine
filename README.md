@@ -57,3 +57,9 @@ ansible-playbook ovirt-enginesetup.yml
 ```
 
 From there, you should be able to connect to the ovirt web console to https://[FQDN_OF_YOUR_HOST]
+
+
+If you want to continue the setup automatically, centos7-ovirt-postenginesetup corrects/adapts a few things
+```
+ansible-playbook ovirt-postenginesetup.yml
+```
