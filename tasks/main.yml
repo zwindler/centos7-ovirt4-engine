@@ -32,6 +32,30 @@
     regexp: 'KexAlgorithms(.*)$'
     line: '#KexAlgorithms\1'
   notify: 'restart sshd'
+- name: Create ISO_DOMAIN mountpoint
+  file: 
+    path=/var/lib/exports/iso
+    state=directory
+- name: create lv for ISO_DOMAIN
+  lvol:
+    vg: '{{ vg_name }}'
+    lv: lv_iso_domain
+    size: 50G
+- name: mkfs lv_iso_domain
+  filesystem:
+    fstype: ext4
+    dev: '/dev/{{ vg_name }}/lv_iso_domain'
+- name: mount new FS
+  mount: 
+    name: /var/lib/exports/iso
+    src: '/dev/{{ vg_name }}/lv_iso_domain'
+    fstype: ext4
+    state: mounted
+- name: Change share owner
+  file: 
+    path: '/var/lib/exports/iso'
+    owner: 36
+    group: 36
 - name: Install ovirt-engine-setup-plugin-allinone
   yum: name=ovirt-engine-setup-plugin-allinone
 - name: Prepare engine-setup playbook
