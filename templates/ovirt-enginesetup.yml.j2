@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  vars:
+    ovirt_host_domain: '{{ ansible_domain }}'
+    ovirt_host_fqdn: '{{ ansible_nodename }}'
+  vars_prompt:
+  - name: "ovirt_engine_admin_password"
+    prompt: "Please enter a password for admin@internal (ovirt engine admin)"
+  remote_user: root
+  roles:
+  - centos7-ovirt-enginesetup

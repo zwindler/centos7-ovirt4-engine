@@ -31,7 +31,7 @@ git clone https://github.com/zwindler/centos7-ovirt-enginesetup
 
 Side note: answer file for has been generated with command "engine-setup --generate-answer=/tmp/engine-setup-answers.j2"
 
-## Creating top level playbooks
+## Creating top level playbook
 ```
 cd /etc/ansible
 cat > ovirt-allinone.yml << EOF
@@ -40,20 +40,6 @@ cat > ovirt-allinone.yml << EOF
   remote_user: root
   roles:
   - centos7-ovirt-allinone
-EOF
-
-cat > ovirt-enginesetup.yml << EOF
----
-- hosts: localhost
-  vars:
-    ovirt_host_domain: CHANGEME_TO_YOUR_DOMAIN
-    ovirt_host_fqdn: CHANGEME_TO_YOUR_SERVER_FQDN
-  vars_prompt:
-  - name: "ovirt_engine_admin_password"
-    prompt: "Please enter a password for admin@internal (ovirt engine admin)"
-  remote_user: root
-  roles:
-  - centos7-ovirt-enginesetup
 EOF
 ```
 
@@ -65,8 +51,6 @@ ansible-playbook ovirt-allinone.yml
 ```
 
 If you want to launch ovirt engine setup with the default configuration. You can review/change the variables given by opening the generated answer file located at /tmp/engine-setup-answers. 
-DON'T FORGET TO MODIFY "CHANGEME_xxx" IN ovirt-enginesetup.yml!!
-
 ```
 ansible-playbook ovirt-enginesetup.yml
 ```

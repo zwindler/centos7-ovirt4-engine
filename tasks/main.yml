@@ -47,3 +47,7 @@
   notify: 'restart sshd'
 - name: Install ovirt-engine-setup-plugin-allinone
   yum: name=ovirt-engine-setup-plugin-allinone
+- name: Prepare engine-setup playbook
+  template: 
+    src: ovirt-enginesetup.yml.j2
+    dest: /etc/ansible/ovirt-enginesetup.yml
