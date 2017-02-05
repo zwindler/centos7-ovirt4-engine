@@ -38,3 +38,7 @@
   template: 
     src: ovirt-enginesetup.yml.j2
     dest: /etc/ansible/ovirt-enginesetup.yml
+- name: Prepare post engine-setup playbook
+  template:
+    src: ovirt-postenginesetup.yml.j2
+    dest: /etc/ansible/ovirt-postenginesetup.yml
