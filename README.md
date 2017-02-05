@@ -14,11 +14,29 @@ pvcreate /dev/sda4
 vgcreate vg_data /dev/sda4
 ```
 
+You also need Ansible 2.3 to automate ovirt configuration (adding VMs and networks and such), so you'll have to compile it if you want more than just the 3 first roles (which deliver a ready to use ovirt).
+
 # Installing prerequisites and packages
 
 ```
 yum install -y epel-release
-yum install -y ansible git
+yum install -y git ansible
+```
+
+If you want ovirt_* modules in ansible
+
+```
+yum -y install python-pip
+pip install --upgrade pip
+pip install sphinx
+cd ~
+git clone https://github.com/ansible/ansible && cd ansible
+make
+make install
+ansible --version
+ansible 2.3.0
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = Default w/o overrides
 ```
 
 ## Getting the ansible roles
