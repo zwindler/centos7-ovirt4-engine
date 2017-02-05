@@ -64,7 +64,7 @@ If you want to install oVirt as All In One
 ansible-playbook ovirt-allinone.yml
 ```
 
-If you want to launch ovirt engine setup with the default configuration. You can review/change the variables given by opening the generated answer file located at /tmp/engine-setup-answers
+If you want to launch ovirt engine setup with the default configuration. You can review/change the variables given by opening the generated answer file located at /tmp/engine-setup-answers. DON'T FORGET TO MODIFY "CHANGEME_xxx" IN ovirt-enginesetup.yml!!
 ```
 ansible-playbook ovirt-enginesetup.yml
 ```
