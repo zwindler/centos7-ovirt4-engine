@@ -2,9 +2,9 @@
 - hosts: localhost
   vars:
     vg_name: 'vg_data'
-    ovirt_host_domain: {{ ansible_domain }}
-    ovirt_host_fqdn: {{ ansible_nodename }}
-    ovirt_host_ip: {{ ansible_default_ipv4.address }}
+    ovirt_host_domain: "{{ ansible_domain }}"
+    ovirt_host_fqdn: "{{ ansible_nodename }}"
+    ovirt_host_ip: "{{ ansible_default_ipv4.address }}"
   vars_prompt:
   - name: "ovirt_engine_admin_password"
     prompt: "Please enter a password for admin@internal (ovirt engine admin)"
