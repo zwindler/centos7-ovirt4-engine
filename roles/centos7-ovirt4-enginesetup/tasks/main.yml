@@ -4,4 +4,4 @@
     src: engine-setup-answers.j2
     dest: /tmp/engine-setup-answers
 - name: run engine setup with engine-setup-answers
-shell: engine-setup --config-append=/tmp/engine-setup-answers
+  shell: engine-setup --config-append=/tmp/engine-setup-answers
