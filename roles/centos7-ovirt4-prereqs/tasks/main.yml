@@ -11,27 +11,6 @@
   selinux:
     policy: targeted
     state: permissive
-- name: comment the last 3 lines with Ciphers, MACs and KexAlgorithms temporarily because ovirt install will fail
-  lineinfile: 
-    backrefs: yes
-    dest: /etc/ssh/sshd_config
-    regexp: 'Ciphers(.*)$'
-    line: '#Ciphers\1'
-  notify: 'restart sshd'
-- name: comment the last 3 lines with Ciphers, MACs and KexAlgorithms temporarily because ovirt install will fail
-  lineinfile:
-    backrefs: yes
-    dest: /etc/ssh/sshd_config
-    regexp: 'MACs(.*)$'
-    line: '#MACs\1'
-  notify: 'restart sshd'
-- name: comment the last 3 lines with Ciphers, MACs and KexAlgorithms temporarily because ovirt install will fail
-  lineinfile:
-    backrefs: yes
-    dest: /etc/ssh/sshd_config
-    regexp: 'KexAlgorithms(.*)$'
-    line: '#KexAlgorithms\1'
-  notify: 'restart sshd'
 - name: Create storage share mountpoint
   file: 
     path=/var/lib/exports/iso
