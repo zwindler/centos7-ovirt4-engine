@@ -34,26 +34,26 @@
   notify: 'restart sshd'
 - name: Create storage share mountpoint
   file: 
-    path=/share/storage
+    path=/var/lib/exports/iso
     state=directory
 - name: create lv for share
   lvol:
     vg: '{{ vg_name }}'
-    lv: lv_share_storage
+    lv: lv_var_lib_exports_iso
     size: 50G
-- name: mkfs lv_share_storage
+- name: mkfs lv_var_lib_exports_iso
   filesystem:
     fstype: xfs
-    dev: '/dev/{{ vg_name }}/lv_share_storage'
+    dev: '/dev/{{ vg_name }}/lv_var_lib_exports_iso'
 - name: mount new FS
   mount: 
-    name: /share/storage
-    src: '/dev/{{ vg_name }}/lv_share_storage'
+    name: /var/lib/exports/iso
+    src: '/dev/{{ vg_name }}/lv_var_lib_exports_iso'
     fstype: xfs
     state: mounted
 - name: Change share owner
   file: 
-    path: '/share/storage'
+    path: '/var/lib/exports/iso'
     owner: 36
     group: 36
 - name: Install ovirt-engine
