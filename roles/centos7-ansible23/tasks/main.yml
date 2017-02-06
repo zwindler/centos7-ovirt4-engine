@@ -5,11 +5,11 @@
     state: latest
 - name: update pip installer
   pip:
-    name: pip
+    name: 'pip'
     state: latest
 - name: install sphinx through pip
-  pip: sphinx
-    name: sphinx
+  pip: 
+    name: 'sphinx'
 - name: clone ansible git repo
   git:
     repo: https://github.com/ansible/ansible
