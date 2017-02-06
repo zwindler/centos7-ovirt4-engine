@@ -29,8 +29,7 @@ yum install -y git ansible
 cd /tmp
 git clone https://github.com/zwindler/centos7-ovirt4-engine
 #Copy files to the right location
-cp -rp centos7-ovirt4-engine/roles /etc/ansible/roles
-cp centos7-ovirt4-engine/*.yml /etc/ansible/
+cp -rp centos7-ovirt4-engine/roles centos7-ovirt4-engine/*.yml /etc/ansible/
 ```
 
 Side note: answer file for has been generated with command "engine-setup --generate-answer=/tmp/engine-setup-answers.j2"
