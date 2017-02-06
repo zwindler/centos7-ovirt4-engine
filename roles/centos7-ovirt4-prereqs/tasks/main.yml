@@ -1,7 +1,7 @@
 ---
-- name: install ovirt release36 repo (last with allinone)
+- name: install ovirt release41 repo (lastest)
   yum:
-    name: http://resources.ovirt.org/pub/yum-repo/ovirt-release36.rpm
+    name: http://resources.ovirt.org/pub/yum-repo/ovirt-release41.rpm
     state: installed
 - name: install updates
   yum:
@@ -32,37 +32,29 @@
     regexp: 'KexAlgorithms(.*)$'
     line: '#KexAlgorithms\1'
   notify: 'restart sshd'
-- name: Create ISO_DOMAIN mountpoint
+- name: Create storage share mountpoint
   file: 
-    path=/var/lib/exports/iso
+    path=/share/storage
     state=directory
-- name: create lv for ISO_DOMAIN
+- name: create lv for share
   lvol:
     vg: '{{ vg_name }}'
-    lv: lv_iso_domain
+    lv: lv_share_storage
     size: 50G
-- name: mkfs lv_iso_domain
+- name: mkfs lv_share_storage
   filesystem:
     fstype: xfs
-    dev: '/dev/{{ vg_name }}/lv_iso_domain'
+    dev: '/dev/{{ vg_name }}/lv_share_storage'
 - name: mount new FS
   mount: 
-    name: /var/lib/exports/iso
-    src: '/dev/{{ vg_name }}/lv_iso_domain'
+    name: /share/storage
+    src: '/dev/{{ vg_name }}/lv_share_storage'
     fstype: xfs
     state: mounted
 - name: Change share owner
   file: 
-    path: '/var/lib/exports/iso'
+    path: '/share/storage'
     owner: 36
     group: 36
-- name: Install ovirt-engine-setup-plugin-allinone
-  yum: name=ovirt-engine-setup-plugin-allinone
-- name: Prepare engine-setup playbook
-  template: 
-    src: ovirt-enginesetup.yml.j2
-    dest: /etc/ansible/ovirt-enginesetup.yml
-- name: Prepare post engine-setup playbook
-  template:
-    src: ovirt-postenginesetup.yml.j2
-    dest: /etc/ansible/ovirt-postenginesetup.yml
+- name: Install ovirt-engine
+  yum: name=ovirt-engine
