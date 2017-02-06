@@ -13,7 +13,7 @@
 - name: clone ansible git repo
   git:
     repo: https://github.com/ansible/ansible
-    dest: /tmp/
+    dest: /tmp/ansible
 - name: make ansible 23
   make:
     chdir: /tmp/ansible
