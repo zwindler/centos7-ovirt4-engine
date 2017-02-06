@@ -1,5 +1,5 @@
 ---
-- name: install ovirt release41 repo (lastest)
+- name: install ovirt release41 repo (latest)
   yum:
     name: http://resources.ovirt.org/pub/yum-repo/ovirt-release41.rpm
     state: installed
