@@ -14,7 +14,7 @@ pvcreate /dev/sda4
 vgcreate vg_data /dev/sda4
 ```
 
-You also need Ansible 2.3 to automate ovirt configuration (adding VMs and networks and such), so this playbook will compile it in role ansible-23
+You also need Ansible 2.3 to automate ovirt configuration (adding VMs and networks and such), so this playbook will compile it in role centos7-ansible23
 
 # Installing prerequisites and packages
 
@@ -34,18 +34,6 @@ cp centos7-ovirt4-engine/*.yml
 ```
 
 Side note: answer file for has been generated with command "engine-setup --generate-answer=/tmp/engine-setup-answers.j2"
-
-## Creating top level playbook
-```
-cd /etc/ansible
-cat > centos7-ovirt4-engine.yml << EOF
----
-- hosts: localhost
-  remote_user: root
-  roles:
-  - centos7-ovirt4-prereqs
-EOF
-```
 
 ## Executing playbooks
 

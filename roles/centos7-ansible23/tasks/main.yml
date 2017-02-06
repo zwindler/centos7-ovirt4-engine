@@ -1,0 +1,21 @@
+---
+- name: install python-pip
+  yum:
+    name: 'python-pip'
+    state: latest
+- name: update pip installer
+  pip:
+    name: pip
+    state: latest
+- name: install sphinx through pip
+  pip: sphinx
+    name: sphinx
+- name: clone ansible git repo
+  git:
+    repo: https://github.com/ansible/ansible
+    dest: /tmp/
+- name: make ansible 23
+  make:
+    chdir: /tmp/ansible
+    target: install
+  become: yes
